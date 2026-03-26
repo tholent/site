@@ -1,0 +1,36 @@
+title: tholent
+email: hello@tholent.com
+description: >-
+  Finding thoughtful solutions to complex problems.
+  Software studio and consultancy.
+baseurl: ""
+url: "https://tholent.com"
+
+theme: minima
+
+author:
+  name: Tholent
+
+# Social links
+github_username: tholent
+# mastodon_username: yourhandle@mastodon.social
+# mastodon_url: https://mastodon.social/@yourhandle
+
+# Navigation pages (sidebar)
+header_pages:
+  - work.md
+  - collective.md
+  - contact.md
+  - blog.md
+
+# Build settings
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .git

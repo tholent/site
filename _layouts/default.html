@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  {%- feed_meta -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600;1,700;1,800&family=Fira+Code:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <button class="hamburger" id="hamburger" aria-label="Open navigation">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="sidebar-overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+
+    <a class="site-logo" href="{{ "/" | relative_url }}" aria-label="tholent — home">
+      <img src="{{ "/assets/images/tholent-logo.svg" | relative_url }}"
+           alt="tholent"
+           width="160"
+           height="60">
+    </a>
+
+    <div class="sidebar-rule"></div>
+
+    <nav class="sidebar-nav">
+      <a href="{{ "/" | relative_url }}"{% if page.url == "/" %} class="active"{% endif %}>Home</a>
+      {%- for path in site.header_pages -%}
+        {%- assign my_page = site.pages | where: "path", path | first -%}
+        {%- if my_page.title -%}
+        <a href="{{ my_page.url | relative_url }}"{% if page.url == my_page.url %} class="active"{% endif %}>{{ my_page.title | escape }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+
+    <div class="sidebar-rule"></div>
+
+    <nav class="sidebar-legal">
+      <a href="{{ "/privacy" | relative_url }}"{% if page.url contains "privacy" %} class="active"{% endif %}>Privacy Policy</a>
+      <a href="{{ "/terms" | relative_url }}"{% if page.url contains "terms" %} class="active"{% endif %}>Terms</a>
+    </nav>
+
+    <div class="sidebar-contact">
+      <span class="sidebar-contact-label">Contact</span>
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      {%- if site.github_username -%}
+      <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">github.com/{{ site.github_username }}</a>
+      {%- endif -%}
+      {%- if site.mastodon_username -%}
+      <a href="{{ site.mastodon_url }}" target="_blank" rel="me noopener">{{ site.mastodon_username }}</a>
+      {%- endif -%}
+    </div>
+
+  </aside>
+
+  <div class="main-wrapper">
+    <main class="page-content" aria-label="Content">
+      {{ content }}
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-copy">&copy; {{ site.time | date: "%Y" }} tholent &mdash; tholent.com</span>
+        <div class="footer-links">
+          <a href="{{ "/privacy" | relative_url }}">Privacy</a>
+          <a href="{{ "/terms" | relative_url }}">Terms</a>
+          <a href="{{ "/collective" | relative_url }}">The Collective</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const sidebar   = document.getElementById('sidebar');
+    const overlay   = document.getElementById('overlay');
+    function openSidebar()  { sidebar.classList.add('open');    overlay.classList.add('open'); }
+    function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+    hamburger.addEventListener('click', () =>
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar()
+    );
+    overlay.addEventListener('click', closeSidebar);
+  </script>
+
+</body>
+</html>

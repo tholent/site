@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<div class="page-inner">
+  <p class="page-label">{{ page.date | date: "%B %-d, %Y" }}</p>
+  <h1>{{ page.title | escape }}</h1>
+  <div class="post-content">
+    {{ content }}
+  </div>
+  <div class="section-divider"></div>
+  <a href="{{ "/blog" | relative_url }}" class="btn btn-secondary">&larr; All writing</a>
+</div>
