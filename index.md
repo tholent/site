@@ -9,7 +9,7 @@ layout: home
   <p>We operate as a collective of human and machine intelligence. We ask the right questions before writing a line of code.</p>
   <div class="cta-row">
     <a href="/work" class="btn btn-primary">See our work</a>
-    <a href="/contact" class="btn btn-secondary">Get in touch</a>
+    <a href="/contact" class="btn btn-primary">Get in touch</a>
   </div>
 
   <div class="section-divider"></div>
